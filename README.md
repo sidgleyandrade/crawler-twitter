@@ -1,10 +1,10 @@
 # crawler-twitter
-crawler-twitter -- is a implementation using the tweepy module  to collect and store tweets in postgresql
+crawler-twitter -- is a implementation using the tweepy library to collect and store tweets in postgresql
 
 ## Dependencies
 
 * python 2.7
-* modules available in the file requirements.txt
+* libraries available in the file requirements.txt
 * postgresql
 * postgis
 
@@ -21,7 +21,8 @@ crawler-twitter -- is a implementation using the tweepy module  to collect and s
     $ ./crawler-twitter-cfg-env.sh
 
 ### no Virtualenv
-* To install all python modules  (requirements.txt)
+
+* To install all python libraries  (requirements.txt)
 
 ## Usage
 
