@@ -1,6 +1,6 @@
 # crawler-twitter
 
-crawler-twitter is a implementation multi-bounding-box using tweepy and postgresql to collect and store tweets (structured and json format)
+crawler-twitter is an implementation multi-bounding-box using tweepy and postgresql to collect and store tweets (structured and json format)
 ## Dependencies
 
 * python 2.7
