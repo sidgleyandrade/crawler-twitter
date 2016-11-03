@@ -1,5 +1,5 @@
 # crawler-twitter
-crawler-twitter -- is a implementation using the tweepy library to collect and store tweets in postgresql
+crawler-twitter is a implementation using tweepy library to collect and store tweets in postgresql.
 
 ## Dependencies
 
