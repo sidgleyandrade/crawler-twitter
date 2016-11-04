@@ -11,7 +11,7 @@ crawler-twitter is an implementation multi-bounding-box using tweepy and postgre
 ### Installation
 
 * To create a database with the extension postgis. It is not necessary to create tables, the crawler-twitter create the tables from template (template-table.sql)
-* To configure the file setup.cfg
+* To configure the file setup.cfg (connections and their bounding-box)
 
 ## Environment configuration
 
