@@ -1,7 +1,5 @@
 import pytz
-import logging
 import psycopg2
-import time
 from tweepy.streaming import json
 from datetime import datetime
 from crawler.src.models import TwitterMessage
@@ -93,10 +91,5 @@ class CRUD():
                      tweetPlace.country_code, tweetPlace.full_name, tweetPlace.name,
                      tweetPlace.place_type, tweet))
                 self.conn.commit()
-            # except psycopg2.IntegrityError as ie:
-            #    pass
             except psycopg2.Error as e:
-                self.conn.rollback()
-                time.sleep(1)
-                logging.error(e)
                 pass

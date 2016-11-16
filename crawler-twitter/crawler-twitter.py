@@ -61,4 +61,4 @@ if __name__ == '__main__':
                                            access_token_secret=access_token_secret[i], geo=bounding_box[i]))
     except Exception as e:
         logging.error(e)
-        exit(2)
+        exit(0)

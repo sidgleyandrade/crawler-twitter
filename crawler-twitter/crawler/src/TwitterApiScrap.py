@@ -72,10 +72,17 @@ class MyStreamListener(tweepy.StreamListener):
         self.conn_sec = conn_sec
         self.conn_schema = conn_schema
         self.conn_table = conn_table
-        #super().__init__()
         super(MyStreamListener, self).__init__()
 
     def on_data(self, raw_data):
-        #print raw_data
         self.crud.save(raw_data, self.conn_schema + '.' + self.conn_table)
+
+    def on_connect(self):
+        logging.error('Connection ' + self.conn_sec + ' established!!')
+
+    def on_disconnect(self, notice):
+        logging.error('Connection ' + self.conn_sec + ' lost!! : ', notice)
+
+    def on_error(self, status):
+        logging.error(status)
 
