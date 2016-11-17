@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS %s.%s (
     lang TEXT NULL,
     retweet_count INT NULL,
     retweeted BOOLEAN NULL,
-    source TEXT NULL,
     text TEXT NULL,
     user_contributors_enabled BOOLEAN NULL,
     user_followers_count INT NULL,

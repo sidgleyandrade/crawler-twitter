@@ -1,5 +1,6 @@
 import pytz
 import psycopg2
+import logging
 from tweepy.streaming import json
 from datetime import datetime
 from crawler.src.models import TwitterMessage
@@ -77,13 +78,13 @@ class CRUD():
             try:
                 self.cur.execute("""SET TimeZone = 'UTC' """)
                 self.cur.execute(
-                    "INSERT INTO " + conn_table + " (id, id_str, created_at, date, favorite_count, favorited, lang, retweet_count, retweeted, source, text, coordinates, " +
+                    "INSERT INTO " + conn_table + " (id, id_str, created_at, date, favorite_count, favorited, lang, retweet_count, retweeted, text, coordinates, " +
                     "user_contributors_enabled, user_followers_count, user_friends_count, user_geo_enabled, user_lang, user_location, user_protected, user_time_zone,user_utc_offset, " +
                     "place_country, place_country_code, place_full_name, place_name, place_place_type, tweet)" +
-                    """VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s,4326), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                    """VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s,4326), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                     (tweetMessage.id, tweetMessage.id_str, tweetMessage.created_at, tweetMessage.date,
                      tweetMessage.favorite_count, tweetMessage.favorited,
-                     tweetMessage.lang, tweetMessage.retweet_count, tweetMessage.retweeted, tweetMessage.source,
+                     tweetMessage.lang, tweetMessage.retweet_count, tweetMessage.retweeted,
                      tweetMessage.text, tweetMessage.coordinates,
                      tweetUser.contributors_enabled, tweetUser.followers_count, tweetUser.friends_count,
                      tweetUser.geo_enabled, tweetUser.lang, tweetUser.location,
@@ -91,5 +92,6 @@ class CRUD():
                      tweetPlace.country_code, tweetPlace.full_name, tweetPlace.name,
                      tweetPlace.place_type, tweet))
                 self.conn.commit()
-            except psycopg2.Error as e:
+            except psycopg2.IntegrityError as e:
+                self.conn.rollback()
                 pass

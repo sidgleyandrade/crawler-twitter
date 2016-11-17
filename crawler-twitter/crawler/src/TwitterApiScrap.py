@@ -46,7 +46,7 @@ class TwitterApiScrap():
             conn.close()
 
 
-    ''' to start api streaming '''
+    ''' creating a stream '''
     def init(self):
         self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret)
@@ -57,10 +57,12 @@ class TwitterApiScrap():
             myStreamListener = MyStreamListener
             myStream = tweepy.Stream(auth=self.auth, listener=myStreamListener(crud=self.CRUD, conn_sec=self.conn_sec, conn_schema=self.conn_schema, conn_table=self.conn_table))
 
+            ''' starting a stream  '''
             if self.searchword:
                 myStream.filter(track=[self.searchword], async=True)
             else:
                 myStream.filter(locations=self.geo, async=True)
+
         except Exception as e:
             logging.error(e)
 
@@ -78,7 +80,7 @@ class MyStreamListener(tweepy.StreamListener):
         self.crud.save(raw_data, self.conn_schema + '.' + self.conn_table)
 
     def on_connect(self):
-        logging.error('Connection ' + self.conn_sec + ' established!!')
+        logging.info('Connection ' + self.conn_sec + ' established!!')
 
     def on_disconnect(self, notice):
         logging.error('Connection ' + self.conn_sec + ' lost!! : ', notice)
