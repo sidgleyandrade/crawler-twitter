@@ -21,7 +21,7 @@ if __name__ == '__main__':
     ''' creates log file '''
     logging.basicConfig(filename=sys.argv[0].split(".")[0] + '.log',
                         format='%(asctime)s\t %(name)s\t [%(process)d] %(processName)s\t %(threadName)s\t %(module)s\t %(funcName)s\t %(lineno)d \t %(levelname)s:%(message)s',
-                        level=logging.INFO)
+                        level=logging.ERROR)
 
     ''' initial variables of connections '''
     consumer_key = []

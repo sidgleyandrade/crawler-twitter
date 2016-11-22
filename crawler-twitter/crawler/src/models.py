@@ -20,6 +20,8 @@ class TwitterUser():
     def __init__(self):
         self.id = None
         self.id_str = None
+        self.name = None
+        self.screen_name = None
         self.contributors_enabled = None
         self.followers_count = None
         self.friends_count = None

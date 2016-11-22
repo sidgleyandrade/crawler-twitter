@@ -1,6 +1,7 @@
 import pytz
 import psycopg2
-import logging
+import copy
+import json
 from tweepy.streaming import json
 from datetime import datetime
 from crawler.src.models import TwitterMessage
@@ -22,7 +23,7 @@ class CRUD():
 
     def save(self, tweet=None, conn_table=''):
 
-        all_data = json.loads(tweet)
+        all_data = copy.deepcopy(json.loads(tweet))
 
         if tweet:
             tweetMessage = TwitterMessage()
@@ -54,6 +55,8 @@ class CRUD():
             if user:
                 tweetUser.id = user['id']
                 tweetUser.id_str = user['id_str']
+                tweetUser.name = user['name']
+                tweetUser.screen_name = user['screen_name']
                 tweetUser.contributors_enabled = user['contributors_enabled']
                 tweetUser.followers_count = user['followers_count']
                 tweetUser.friends_count = user['friends_count']
@@ -79,13 +82,14 @@ class CRUD():
                 self.cur.execute("""SET TimeZone = 'UTC' """)
                 self.cur.execute(
                     "INSERT INTO " + conn_table + " (id, id_str, created_at, date, favorite_count, favorited, lang, retweet_count, retweeted, text, coordinates, " +
-                    "user_contributors_enabled, user_followers_count, user_friends_count, user_geo_enabled, user_lang, user_location, user_protected, user_time_zone,user_utc_offset, " +
+                    "user_id, user_id_str, user_name, user_screen_name, user_contributors_enabled, user_followers_count, user_friends_count, user_geo_enabled, user_lang, user_location, user_protected, user_time_zone,user_utc_offset, " +
                     "place_country, place_country_code, place_full_name, place_name, place_place_type, tweet)" +
-                    """VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s,4326), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                    """VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s,4326), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                     (tweetMessage.id, tweetMessage.id_str, tweetMessage.created_at, tweetMessage.date,
                      tweetMessage.favorite_count, tweetMessage.favorited,
                      tweetMessage.lang, tweetMessage.retweet_count, tweetMessage.retweeted,
                      tweetMessage.text, tweetMessage.coordinates,
+                     tweetUser.id, tweetUser.screen_name, tweetUser.name, tweetUser.screen_name,
                      tweetUser.contributors_enabled, tweetUser.followers_count, tweetUser.friends_count,
                      tweetUser.geo_enabled, tweetUser.lang, tweetUser.location,
                      tweetUser.protected, tweetUser.time_zone, tweetUser.utc_offset, tweetPlace.country,
