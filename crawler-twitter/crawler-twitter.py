@@ -13,7 +13,7 @@ from crawler.src.TwitterApiScrap import TwitterApiScrap
 ''' main function '''
 if __name__ == '__main__':
 
-    path_home = os.getcwd() + '/crawler'
+    path_home = os.path.dirname(os.path.realpath(__file__)) + '/crawler'
 
     cfg = configparser.ConfigParser()
     cfg.read(path_home + '/setup.cfg')

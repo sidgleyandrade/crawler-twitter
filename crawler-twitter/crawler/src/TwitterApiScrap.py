@@ -83,7 +83,7 @@ class MyStreamListener(tweepy.StreamListener):
         logging.info('Connection ' + self.conn_sec + ' established!!')
 
     def on_disconnect(self, notice):
-        logging.error('Connection ' + self.conn_sec + ' lost!! : ', notice)
+        logging.info('Connection ' + self.conn_sec + ' lost!! : ', notice)
 
     def on_error(self, status):
         logging.error(status)
