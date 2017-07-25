@@ -1,4 +1,4 @@
-class TwitterMessage():
+class TwitterMessage:
     def __init__(self):
         self.id = None
         self.id_str = None
@@ -16,7 +16,7 @@ class TwitterMessage():
         self.text = None
 
 
-class TwitterUser():
+class TwitterUser:
     def __init__(self):
         self.id = None
         self.id_str = None
@@ -33,7 +33,7 @@ class TwitterUser():
         self.utc_offset = None
 
 
-class TwitterPlace():
+class TwitterPlace:
     def __init__(self):
         self.id = None
         self.bounding_box = None  # polygon 4 pares
@@ -44,6 +44,6 @@ class TwitterPlace():
         self.place_type = None
 
 
-class TwitterEntity():
+class TwitterEntity:
     def __init__(self):
         self.created_at = None
