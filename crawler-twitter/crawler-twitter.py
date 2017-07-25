@@ -2,8 +2,14 @@ import configparser
 import os
 import sys
 import logging
+import multiprocessing
+from itertools import repeat
 
 from crawler.src.TwitterApiScrap import TwitterApiScrap
+
+
+def warp(args):
+    TwitterApiScrap(*args)
 
 if __name__ == '__main__':
 
@@ -61,18 +67,28 @@ if __name__ == '__main__':
                     bounding_box_format[k] = (float(geo))
             bounding_box.append(bounding_box_format)
 
-        crawler = []
-        for i, conn in enumerate(cfg.sections()):
-            crawler.append(TwitterApiScrap(path_home=path_home,
-                                           conn_sec=conn,
-                                           schema=conn_schema[i],
-                                           table=conn_table[i],
-                                           consumer_key=consumer_key[i],
-                                           consumer_secret=consumer_secret[i],
-                                           access_token=access_token[i],
-                                           access_token_secret=access_token_secret[i],
-                                           geo=bounding_box[i],
-                                           search_word=search_word[i]))
+        crawler_args = []
+        pool = multiprocessing.Pool(len(cfg.sections()))
+
+        crawler_args = zip(repeat(path_home), cfg.sections(), conn_schema,
+                           conn_table, consumer_key, consumer_secret,
+                           access_token, access_token_secret,
+                           bounding_box, search_word)
+        pool.map(warp, crawler_args)
+
+        # Old version without reconnection
+        # for i, conn in enumerate(cfg.sections()):
+        #    crawler.append(TwitterApiScrap(path_home=path_home,
+        #                                   conn_sec=conn,
+        #                                   schema=conn_schema[i],
+        #                                   table=conn_table[i],
+        #                                   consumer_key=consumer_key[i],
+        #                                   consumer_secret=consumer_secret[i],
+        #                                   access_token=access_token[i],
+        #                                   access_token_secret=access_token_secret[i],
+        #                                   geo=bounding_box[i],
+        #                                   search_word=search_word[i]))
+
     except Exception as e:
         logging.error(e)
         exit(0)

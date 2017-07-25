@@ -31,11 +31,10 @@ class TwitterApiScrap:
         # Create database table if it does not exist
         self.create_table()
 
-        # Create the Twitter Stream object
+        # Create the Twitter Stream object if running variable is False
         while True:
             if not self.running:
                 self.init()
-            time.sleep(20)  # Check each 20 sec.
 
     def create_table(self):
         """ Create the tweets's database table from the template
@@ -61,17 +60,18 @@ class TwitterApiScrap:
 
         except Exception as e:
             logging.error(e)
+            pass
 
     def init(self):
         auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
         auth.set_access_token(self.access_token, self.access_token_secret)
-        # api = tweepy.API(auth)
 
         try:
             my_stream_listener = MyStreamListener
             my_stream = tweepy.Stream(auth=auth,
                                       listener=my_stream_listener(
-                                          crud=self.CRUD, conn_sec=self.conn_sec,
+                                          crud=self.CRUD,
+                                          conn_sec=self.conn_sec,
                                           conn_schema=self.conn_schema,
                                           conn_table=self.conn_table))
 
@@ -82,11 +82,13 @@ class TwitterApiScrap:
                 my_stream.filter(locations=self.geo, async=True)
 
             # Check if the connection stream is active and
-            # reconnect if it is not.
+            # break if it is not. init() function will restart
+            # the connection stream.
             self.running = my_stream.running
             while True:
                 if not my_stream.running:
                     self.running = False
+                    time.sleep(60)  # Check each 60 sec.
                     break
         except Exception as e:
             logging.error(e)
@@ -103,7 +105,7 @@ class MyStreamListener(tweepy.StreamListener):
         super(MyStreamListener, self).__init__()
 
     def on_data(self, raw_data):
-        # print(raw_data)
+        # print(self.conn_sec, raw_data)
         self.crud.save(raw_data, self.conn_schema + '.' + self.conn_table)
 
     def on_exception(self, exception):
@@ -112,9 +114,11 @@ class MyStreamListener(tweepy.StreamListener):
 
     def on_connect(self):
         logging.info('Connection ' + self.conn_sec + ' established!!')
+        pass
 
     def on_disconnect(self, notice):
         logging.info('Connection ' + self.conn_sec + ' lost!! : ', notice)
+        pass
 
     def on_error(self, status):
         logging.error(status)
