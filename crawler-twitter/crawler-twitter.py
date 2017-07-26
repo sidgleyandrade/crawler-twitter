@@ -17,7 +17,7 @@ def main():
     cfg = configparser.ConfigParser()
     cfg.read(path_home + '/setup.cfg')
 
-    # Create log file
+    # Create error log file
     logging.basicConfig(filename=sys.argv[0].split(".")[0] + '.log',
                         format='%(asctime)s\t%(name)s\t[%(process)d]\t'
                                '%(processName)s\t%(threadName)s\t'
@@ -60,15 +60,13 @@ def main():
                 if param[0] == 'database.schema':
                     conn_schema.append(param[1].split(',')[0])
 
-            # Format bounding box
+            # Format bounding box.
             if len(bounding_box_format) == 4:
                 for k, geo in enumerate(bounding_box_format):
                     bounding_box_format[k] = (float(geo))
             bounding_box.append(bounding_box_format)
 
-        crawler_args = []
         pool = multiprocessing.Pool(len(cfg.sections()))
-
         crawler_args = zip(repeat(path_home), cfg.sections(), conn_schema,
                            conn_table, consumer_key, consumer_secret,
                            access_token, access_token_secret,

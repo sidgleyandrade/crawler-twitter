@@ -2,7 +2,7 @@ import pytz
 import copy
 import json
 import logging
-# import psycopg2
+import psycopg2
 
 from tweepy.streaming import json
 from datetime import datetime
@@ -124,10 +124,6 @@ class CRUD:
                                   tweet_user.name,
                                   tweet_user.screen_name))
                 self.conn.commit()
-            except Exception as e:
+            except psycopg2.IntegrityError:
                 self.conn.rollback()
-                logging.error(e)
                 pass
-            # except psycopg2.IntegrityError as e:
-            #    self.conn.rollback()
-            #    pass

@@ -38,7 +38,6 @@ class DBConnection(object):
         if self.conn is None:
             conn_str = "host='%s' dbname='%s' user='%s' password='%s'" % \
                        (self.host, self.dbname, self.user, self.password)
-
             try:
                 self.conn = psycopg2.connect(conn_str)
             except Exception as e:
