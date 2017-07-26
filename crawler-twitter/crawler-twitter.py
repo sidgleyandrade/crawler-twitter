@@ -11,8 +11,7 @@ from crawler.src.TwitterApiScrap import TwitterApiScrap
 def warp(args):
     TwitterApiScrap(*args)
 
-if __name__ == '__main__':
-
+def main():
     # Get the parameters from setup.cfg.
     path_home = os.path.dirname(os.path.realpath(__file__)) + '/crawler'
     cfg = configparser.ConfigParser()
@@ -76,19 +75,9 @@ if __name__ == '__main__':
                            bounding_box, search_word)
         pool.map(warp, crawler_args)
 
-        # Old version without reconnection
-        # for i, conn in enumerate(cfg.sections()):
-        #    crawler.append(TwitterApiScrap(path_home=path_home,
-        #                                   conn_sec=conn,
-        #                                   schema=conn_schema[i],
-        #                                   table=conn_table[i],
-        #                                   consumer_key=consumer_key[i],
-        #                                   consumer_secret=consumer_secret[i],
-        #                                   access_token=access_token[i],
-        #                                   access_token_secret=access_token_secret[i],
-        #                                   geo=bounding_box[i],
-        #                                   search_word=search_word[i]))
-
     except Exception as e:
         logging.error(e)
         exit(0)
+
+if __name__ == '__main__':
+    main()
