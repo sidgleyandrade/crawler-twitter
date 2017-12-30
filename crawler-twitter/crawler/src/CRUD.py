@@ -1,7 +1,6 @@
 import pytz
 import copy
 import json
-import logging
 import psycopg2
 
 from tweepy.streaming import json

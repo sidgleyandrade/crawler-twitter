@@ -105,7 +105,6 @@ class MyStreamListener(tweepy.StreamListener):
         super(MyStreamListener, self).__init__()
 
     def on_data(self, raw_data):
-        # print(self.conn_sec, raw_data)
         self.crud.save(raw_data, self.conn_schema + '.' + self.conn_table)
 
     def on_exception(self, exception):

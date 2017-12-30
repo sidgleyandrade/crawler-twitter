@@ -17,7 +17,7 @@ def main():
     cfg = configparser.ConfigParser()
     cfg.read(path_home + '/setup.cfg')
 
-    # Create error log file
+    # Create error log file.
     logging.basicConfig(filename=sys.argv[0].split(".")[0] + '.log',
                         format='%(asctime)s\t%(name)s\t[%(process)d]\t'
                                '%(processName)s\t%(threadName)s\t'
