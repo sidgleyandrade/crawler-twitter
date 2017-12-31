@@ -1,6 +1,6 @@
 # crawler-twitter
 
-crawler-twitter is an implementation multi-bounding-box using tweepy and postgresql to collect and store tweets (structured and json format).
+**crawler-twitter** is an implementation multi-bounding-box using tweepy and postgresql to collect and store tweets (structured and json format).
 
 ## Dependencies
 
@@ -11,7 +11,7 @@ crawler-twitter is an implementation multi-bounding-box using tweepy and postgre
 
 ## Configuration
 
-* To create a database with the extension postgis. It is not necessary to create tables, crawler-twitter will create the tables from the config file parameters (`segup.cfg`).
+* To create a database with the extension postgis. It is not necessary to create tables, **crawler-twitter** will create the tables from the config file parameters (`segup.cfg`).
 * To configure the connections in the `setup.cfg` file, as follow:
 
     * __Bounding box connection__
@@ -54,14 +54,13 @@ crawler-twitter is an implementation multi-bounding-box using tweepy and postgre
 
 **Note:** `connection.bounding_box` and `connection.search_word` are exclusive parameters.
 
-
 ## Running
 
     $ ./run.sh
 
 ## Contact
 
-If you believe you have found a bug, or would like to ask for a feature or contribute to the project, please inform me at sidgleyandrade@utfpr.edu.br.
+If you believe you have found a bug, or would like to ask for a feature or contribute to the project, please inform me at sidgleyandrade[at]utfpr[dot]edu[dot]br.
 
 ## License
 
