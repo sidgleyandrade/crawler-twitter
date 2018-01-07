@@ -9,6 +9,10 @@
 * PostgreSQL 9.5 or greater
 * PostGIS 2.0 or greater
 
+## Instalation
+
+    $ git clone https://github.com/sidgleyandrade/crawler-twitter.git    
+    
 ## Configuration
 
 * To create a database with the extension postgis. It is not necessary to create tables, **crawler-twitter** will create the tables from the config file parameters (`segup.cfg`).
@@ -54,10 +58,18 @@
 
 **Note:** `connection.bounding_box` and `connection.search_word` are exclusive parameters.
 
+#### Getting Twitter credentials for apps
+ 
+See [https://apps.twitter.com/](https://apps.twitter.com/).
+
 ## Running
 
     $ chmod +x run.sh
     $ ./run.sh
+
+## Known issues
+
+See [issues](https://github.com/sidgleyandrade/crawler-twitter/issues).
 
 ## Contact
 
