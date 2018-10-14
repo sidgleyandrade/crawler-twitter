@@ -79,7 +79,7 @@ class CRUD:
                 tweet_place.place_type = place['place_type']
 
             try:
-                self.cur.execute("""SET TimeZone = 'UTC' """)
+                # self.cur.execute("""SET TimeZone = 'UTC' """)
                 self.cur.execute("""INSERT INTO """ + conn_table + """ 
                 (id, id_str, created_at, date, favorite_count, favorited, 
                 lang, retweet_count, retweeted, text, 
