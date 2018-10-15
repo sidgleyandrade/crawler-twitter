@@ -5,6 +5,7 @@
 ## Dependencies
 
 * python 2.7 or greater
+* python-virtualenv 15.1 or greater
 * libraries available in the `requirements.txt` file
 * PostgreSQL 9.5 or greater
 * PostGIS 2.0 or greater
