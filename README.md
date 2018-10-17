@@ -68,6 +68,10 @@ See [https://apps.twitter.com/](https://apps.twitter.com/).
     $ chmod +x run.sh
     $ ./run.sh
 
+## Demo Video
+
+[![Crawler-Twitter tool](https://i9.ytimg.com/vi/5hnggAlOF8A/mqdefault.jpg?sqp=CJTGnN4F&rs=AOn4CLBDXE0x2a24zpKfhxl1TWnXYl0s3Q&time=1539777543748)](http://www.youtube.com/watch?v=5hnggAlOF8A "Crawler-Twittre tool")
+
 ## Known issues
 
 See [issues](https://github.com/sidgleyandrade/crawler-twitter/issues).
