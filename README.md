@@ -70,7 +70,7 @@ See [https://apps.twitter.com/](https://apps.twitter.com/).
 
 ## Demo Video
 
-[![Crawler-Twitter tool](https://i9.ytimg.com/vi/i2dgaFrxiHs/mqdefault.jpg?sqp=CIjHnd4F&rs=AOn4CLBeTG8WSkbeM4bZkMdQaU9gcbN28A&time=1539793952811](http://www.youtube.com/watch?v=i2dgaFrxiHs "Crawler-Twittre tool")
+[![Crawler-Twitter tool](https://i9.ytimg.com/vi/i2dgaFrxiHs/mqdefault.jpg?sqp=CIjHnd4F&rs=AOn4CLBeTG8WSkbeM4bZkMdQaU9gcbN28A&time=1539793952811)](http://www.youtube.com/watch?v=i2dgaFrxiHs "Crawler-Twittre tool")
 
 ## Known issues
 
