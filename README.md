@@ -72,6 +72,27 @@ See [https://apps.twitter.com/](https://apps.twitter.com/).
 
 [![Crawler-Twitter tool](https://i9.ytimg.com/vi/i2dgaFrxiHs/mqdefault.jpg?sqp=CIjUod4F&rs=AOn4CLDkxFH3sZ6TKmivRAbDNJHtAmf1ww&time=1539861235385)](http://www.youtube.com/watch?v=i2dgaFrxiHs "Crawler-Twittre tool")
 
+## Citation
+
+Please, cite the conference poster if you use this tool in your research:
+
+    Sidgley Camargo de Andrade, Lieverton Horn Queiroz, Alexandre C. B. Delbem, João Porto de Albuquerque (2018)
+    'An architectural model for retrieving data from Social Media APIs: an instantiation for consuming the Twitter Stream API'.
+    Presented as poster. In: XIX Brazilian Symposium on Geoinformatics (GEOINFO). Campina Grande, Paraíba, Brazil.
+
+BibTex
+
+    @misc{deAndrade2018c,
+        author = {{Sidgley Camargo de Andrade} and {Lieverton Horn Queiroz} and {Alexandre C. B. Delbem} and {Jo\~{a}o Porto de Albuquerque}},    
+        title = {{An architectural model for retrieving data from Social Media APIs: an instantiation for consuming the Twitter Stream API}},
+        month = {12},
+        year = {2018},
+        type = {Poster},
+        howpublished = {Presented as poster},
+        note = {In: XIX Brazilian Symposium on Geoinformatics (GEOINFO). Campina Grande, Para\'{i}ba, Brazil},
+        url = {https://www.researchgate.net/publication/330221368_An_architectural_model_for_retrieving_data_from_Social_Media_APIs_an_instantiation_for_consuming_the_Twitter_Stream_API/stats}
+    }
+
 ## Known issues
 
 See [issues](https://github.com/sidgleyandrade/crawler-twitter/issues).
