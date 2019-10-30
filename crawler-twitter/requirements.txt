@@ -2,7 +2,7 @@ configparser==3.5.0
 oauthlib==2.0.6
 psycopg2==2.7.3.2
 pytz==2017.3
-requests==2.18.4
+requests==2.20.0
 requests-oauthlib==0.8.0
 requests-toolbelt==0.8.0
 six==1.11.0
